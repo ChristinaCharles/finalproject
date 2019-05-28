@@ -12,10 +12,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Michael Jackson</td>
-            <td>Thriller</td>
-            <td>78</td>
+          <tr *ngFor="let song of allSongs">
+            <td>{{ song.artist }}</td>
+            <td>{{ song.title }}</td>
+            <td>{{ song.times_added }}</td>
             <td><a href="#" class="btn btn-primary">Add</a></td>
           </tr>
         </tbody>
