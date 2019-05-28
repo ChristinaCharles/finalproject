@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+      <div class="col">
+          <h2 class="text-info">Register here!</h2><hr>
+          <form #form="ngForm" (ngSubmit)="onSubmit($event, form)" >
+              <div class="form-group">
+                  <label class="font-weight-bold" for="firstName">First name:</label>
+                  <p class="text-primary m-0">First name must contain at least two letters and contain only letters.</p>
+                  <input type="text" name="firstName" class="form-control shadow mb-4" 
+                  required
+                  minlength="3"
+                  maxlength="25"
+                  pattern="^[a-zA-z]+$"
+                  [(ngModel)]="newUser.firstName"
+                  #firstName="ngModel"
+                  >
+                  <p>{{ newUser.firstName }}</p>
+                  <p *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)d" class="text-danger">Please enter a valid First Name!</p>
+                  <label class="font-weight-bold" for="lastName">Last name:</label>
+                  <p class="text-primary m-0">Last name must contain at least two letters and contain only letters.</p>
+                  <input type="text" name="lastName" class="form-control shadow mb-4"
+                  required
+                  minlength="3"
+                  maxlength="25"
+                  pattern="^[a-zA-z]+$"
+                  [(ngModel)]="newUser.lastName"
+                  #lastName="ngModel"
+                  >
+                  <p *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="text-danger">Please enter a valid Last Name!</p>
+                  <label class="font-weight-bold" for="email">Email:</label>
+                  <input type="text" name="email" class="form-control shadow mb-4"
+                  required
+                  minlength="3"
+                  maxlength="25"
+                  pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+                  [(ngModel)]="newUser.email"
+                  #email="ngModel"
+                  >
+                  <p *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">Please enter a valid Email!</p>
+                  <label class="font-weight-bold" for="password">Password:</label>
+                  <p class="text-primary m-0">Password must contain a number, a capital letter, and between 8-15 characters.</p>
+                  <input type="password" name="password" class="form-control shadow mb-4"
+                  required
+                  minlength="3"
+                  maxlength="25"
+                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
+                  [(ngModel)]="newUser.password"
+                  #password="ngModel"
+                  >
+                  <p *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">Please enter a valid password!</p>
+                  <label class="font-weight-bold" for="confirm">Confirm Password:</label>
+                  <p class="text-primary m-0">Passwords must match.</p>
+                  <input type="password" name="confirm" class="form-control shadow"
+                  required
+                  minlength="3"
+                  maxlength="25"
+                  pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
+                  [(ngModel)]="newUser.confirm"
+                  #confirm="ngModel"
+                  >
+                  <p *ngIf="confirm.invalid && (confirm.dirty || confirm.touched)" class="text-danger">Your passwords must match!</p>
+                  <br>
+                  <button *ngIf="!form.valid" disabled type="submit" class="btn btn-success shadow">Register!</button>
+                  <button *ngIf="form.valid" type="submit" class="btn btn-success shadow">Register!</button>
+              </div>
+          </form>
+      </div>
+      <div class="col">
+          <form action="/login" method="post">
+              <h2 class="text-info">Login here!</h2><hr>
+              <label class="font-weight-bold" for="login_email">Email:</label>
+              <input type="text" name="login_email" class="form-control shadow">
+              <label class="font-weight-bold" for="login_password">Password:</label>
+              <input type="password" name="login_password" class="form-control shadow"><br>
+              <button type="submit" class="btn btn-success shadow">Login!</button>
+          </form>
+      </div>
+  </div>
+</div>
