@@ -1,6 +1,6 @@
 export class Song {
-    id: number;
+    // id: number;
     title: string;
     artist: string;
-    total_times_added: number;
+    'total_times_added': number;
 }
