@@ -7,11 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginRegComponent } from './login-reg/login-reg.component';
+import { HeaderComponent } from './header/header.component';
+import { AllSongsComponent } from './all-songs/all-songs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginRegComponent,
+    HeaderComponent,
+    AllSongsComponent,
   ],
   imports: [
     BrowserModule,
