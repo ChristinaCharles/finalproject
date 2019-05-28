@@ -7,6 +7,11 @@ from django.db import models
 class UserManager(models.Manager):
     pass
 
+class Song(models.Model):
+    title = models.CharField(max_length=255)
+    artist = models.CharField(max_length=255)
+    total_times_added = models.IntegerField()
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -16,13 +21,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-class Song(modles.Model):
-    title = modles.CharField(max_length=255)
-    artist = modles.CharField(max_length=255)
-    total_times_added = IntegerField()
 
 class Count(models.Model):
     user = models.ForeignKey(User, related_name='counts')
     song = models.ForeignKey(Song, related_name='counts')
-    number = IntegerField()
+    number = models.IntegerField()
 
