@@ -1,0 +1,25 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="row">
+    <div class="col">
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Atrist</th>
+            <th>Title</th>
+            <th>Times Added</th>
+            <th>Add to Playlist</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let song of allSongs">
+            <td>{{ song.artist }}</td>
+            <td>{{ song.title }}</td>
+            <td>{{ song.times_added }}</td>
+            <td><a href="#" class="btn btn-primary">Add</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
