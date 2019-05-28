@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 import {User} from './user';
 
 
@@ -11,7 +11,7 @@ export class LoginRegService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = 'http://localhost:8000/api';
+  baseUrl = 'http://localhost:8000/api';
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
