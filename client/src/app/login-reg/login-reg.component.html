@@ -2,7 +2,7 @@
   <div class="row">
       <div class="col">
           <h2 class="text-info">Register here!</h2><hr>
-          <form #form="ngForm" (ngSubmit)="onSubmit($event, form)" >
+          <form #form="ngForm" (submit)="onSubmit()" >
               <div class="form-group">
                   <label class="font-weight-bold" for="firstName">First name:</label>
                   <p class="text-primary m-0">First name must contain at least two letters and contain only letters.</p>
