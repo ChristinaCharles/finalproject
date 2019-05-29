@@ -14,13 +14,14 @@ def index(req):
 
 def login(req):
     loginUser = json.loads(req.body.decode())
-    print("**********", loginUser['email'])
-    user = User.objects.get(email=loginUser['email'])
+    user = User.objects.filter(email=loginUser['email'])
+    print("**********", loginUser['password'], "Database password: ", user.password)
     if bcrypt.checkpw(loginUser['password'].encode(), user.password.encode()):
         print("password match")
     else:
         return HttpResponse(status=400)
-    return HttpResponse(user.id, status=200)
+    serialized_user = serializers.serialize('json', user)
+    return HttpResponse(serialized_user, content_type='application/json', status=200)
 
 
 def createUser(req):

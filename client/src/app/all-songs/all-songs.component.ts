@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from '../song.service';
 import {Song} from '../song';
+import { LoginRegService } from '../login-reg.service';
 
 @Component({
   selector: 'app-all-songs',
@@ -11,12 +12,16 @@ export class AllSongsComponent implements OnInit {
   allSongs: object[];
   newSong: Song = new Song();
   id: number;
+  currentUser: object[];
 
 
-  constructor(private songService: SongService) {
+  constructor(private songService: SongService, private userService: LoginRegService) {
   }
 
   ngOnInit() {
+    this.userService.getOneUser(parseInt(sessionStorage.getItem('user.id'))).subscribe(data => { 
+      this.currentUser = data;
+    })
     this.id = parseInt(sessionStorage.getItem('user.id'));
     this.songService.getSongs().subscribe(data => {
       this.allSongs = data;
@@ -35,6 +40,7 @@ export class AllSongsComponent implements OnInit {
     console.log(id);
     this.songService.addToPlaylist(id, user).subscribe(data => {
     });
+    this.ngOnInit();
     this.songService.getSongs().subscribe(data => {
       this.allSongs = data;
     });

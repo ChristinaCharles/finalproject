@@ -10,7 +10,7 @@ import { loginUser } from './loginUser';
   providedIn: 'root'
 })
 export class LoginRegService {
-  id: any;
+  thisUser: object[];
 
   constructor(private http: HttpClient) { }
 
