@@ -14,7 +14,6 @@
                   [(ngModel)]="newUser.firstName"
                   #firstName="ngModel"
                   >
-                  <p>{{ newUser.firstName }}</p>
                   <p *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)d" class="text-danger">Please enter a valid First Name!</p>
                   <label class="font-weight-bold" for="lastName">Last name:</label>
                   <p class="text-primary m-0">Last name must contain at least two letters and contain only letters.</p>

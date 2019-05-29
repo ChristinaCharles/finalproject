@@ -5,7 +5,7 @@
       <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-          <th>Atrist</th>
+          <th>Artist</th>
           <th>Title</th>
           <th>Times Added</th>
           <th>Add to Playlist</th>
@@ -16,7 +16,7 @@
           <td>{{ song.fields.artist }}</td>
           <td>{{ song.fields.title }}</td>
           <td>{{ song.fields.total_times_added }}</td>
-          <td><a href="#" class="btn btn-primary">Add</a></td>
+          <td><button (click)="onClick(song.pk)" class="btn btn-primary">Add</button></td>
         </tr>
         </tbody>
       </table>
