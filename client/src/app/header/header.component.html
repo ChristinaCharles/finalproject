@@ -2,7 +2,9 @@
   <div class="col">
     <h1 class="d-inline">Dojo Music Hub</h1>
     <h3 class="d-inline ml-5">Welcome back, {{ firstName }} {{ lastName }}</h3>
-    <a class="ml-5" href="#">Dashboard </a>
+    <a class="ml-5" [routerLink]="['/users', id]">Playlist </a>
+    <a class="ml-5" href="/songs/">Dashboard </a>
     <a (click)="onClick()" class="ml-5" href="/">Log Out</a>
+    <hr>
   </div>
 </div>

@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {Song} from './song';
 import {User} from "./user";
 
-// import {User} from "./user";
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +24,15 @@ export class SongService {
     this.http.post<Song>(`${this.baseUrl}/createsong/`, song);
   }
 
-  addToPlaylist(id: number) {
+  addToPlaylist(song: number, user: number) {
     console.log('hiiii');
-    return this.http.post<Song>(`${this.baseUrl}/addtoplaylist/`, id);
+    return this.http.post<Song>(`${this.baseUrl}/addtoplaylist/`, {song, user});
   }
 
+  getUserSongs(user: number): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.baseUrl}/getusersongs/${user}/`);
+  }
+  // getSongCount(user: number): Observable<number[]> {
+  //   return this.http.get<number[]>(`${this.baseUrl}/getsongcount/${user}`);
+  // }
 }

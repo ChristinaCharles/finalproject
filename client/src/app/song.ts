@@ -3,4 +3,5 @@ export class Song {
     title: string;
     artist: string;
     'total_times_added': number;
+    // count: number;
 }
