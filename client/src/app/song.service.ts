@@ -25,4 +25,9 @@ export class SongService {
     this.http.post<Song>(`${this.baseUrl}/createsong/`, song);
   }
 
+  addToPlaylist(id: number) {
+    console.log('hiiii');
+    return this.http.post<Song>(`${this.baseUrl}/addtoplaylist/`, id);
+  }
+
 }

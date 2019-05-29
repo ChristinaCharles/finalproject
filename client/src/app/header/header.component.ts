@@ -8,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
+  firstName: string;
+  lastName: string;
 
   ngOnInit() {
+    this.firstName = sessionStorage.getItem('user.firstName');
+    this.lastName = sessionStorage.getItem('user.lastName');
+  }
+  onClick() {
+    sessionStorage.clear();
   }
 
 }

@@ -13,14 +13,16 @@ export class LoginRegService {
 
   baseUrl = 'http://localhost:8000/api';
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl);
+  handleLogin(user: User, id: string) {
+    sessionStorage.setItem('user.firstName', user.firstName);
+    sessionStorage.setItem('user.lastName', user.lastName);
+    sessionStorage.setItem('user.id', id);
   }
 
   createUser(user: User): void {
     console.log(user.firstName);
     this.http.post<User>(`${this.baseUrl}/createuser/`, user).subscribe(data => {
-      console.log(data);
+      this.handleLogin(user, data.toString());
     });
   }
 }
