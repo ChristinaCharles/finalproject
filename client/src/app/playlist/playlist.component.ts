@@ -11,7 +11,8 @@ export class PlaylistComponent implements OnInit {
   firstName: string;
   lastName: string;
   id: string;
-  userSongs: object[];
+  userSongs = [];
+
   // songCount: number[];
 
   constructor(private songService: SongService) {
@@ -22,7 +23,7 @@ export class PlaylistComponent implements OnInit {
     this.lastName = sessionStorage.getItem('user.lastName');
     this.id = sessionStorage.getItem('user.id');
     this.songService.getUserSongs(parseInt(this.id)).subscribe(data => {
-      this.userSongs = data;
+      Object.values(data).forEach(song => this.userSongs.push(song));
     });
     // this.songService.getSongCount(parseInt(this.id)).subscribe( data => {
     //   this.songCount = data;
