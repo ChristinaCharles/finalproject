@@ -39,6 +39,7 @@ def getsongs(req):
 
 
 def createsong(req):
+    print("Here")
     new_song = json.loads(req.body.decode())
 
     song = Song.objects.create(title=new_song['title'], artist=new_song['artist'], total_times_added=1)

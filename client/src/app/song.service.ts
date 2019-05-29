@@ -19,9 +19,9 @@ export class SongService {
     return this.http.get<Song[]>(`${this.baseUrl}/getSongs/`);
   }
 
-  createSong(song: Song): void {
-    console.log(song.title, this.baseUrl);
-    this.http.post<Song>(`${this.baseUrl}/createsong/`, song);
+  createSong(song: Song) {
+    console.log(song.title, song.artist, this.baseUrl);
+    return this.http.post<Song>(`${this.baseUrl}/createsong/`, song);
   }
 
   addToPlaylist(song: number, user: number) {
