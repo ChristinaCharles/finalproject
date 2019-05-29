@@ -10,6 +10,7 @@ import { LoginRegComponent } from './login-reg/login-reg.component';
 import { HeaderComponent } from './header/header.component';
 import { AllSongsComponent } from './all-songs/all-songs.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { OneSongComponent } from './one-song/one-song.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     HeaderComponent,
     AllSongsComponent,
     PlaylistComponent,
+    OneSongComponent,
   ],
   imports: [
     BrowserModule,

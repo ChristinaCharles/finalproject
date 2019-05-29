@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <app-header></app-header>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h1>Others who added <span class="text-info" *ngFor="let song of oneSong">{{ song.fields.artist }} - {{ song.fields.title }}</span></h1>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Times Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usersWhoAdded">
+            <td>{{ user.firstName }} {{ user.lastName }}</td>
+            <td>{{ user.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

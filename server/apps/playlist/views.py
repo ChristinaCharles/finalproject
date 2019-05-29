@@ -72,8 +72,16 @@ def getusersongs(req, id):
 
     # serialized_songs = serializers.serialize('json', allSongs)
     return HttpResponse(json.dumps(songs), content_type='application/json', status=200)
+def getOneSong(req, id):
+    song = Song.objects.filter(id=id)
+    serialized_song = serializers.serialize('json', song)
+    return HttpResponse(serialized_song, content_type='application/json', status=200)
 
-# def getsongcount(req, id):
-#     user = User.objects.get(id=id)
-#     # song = user.songs.
-#     return
+def getsongcount(req, id):
+    usersWhoAdded = Count.objects.filter(song=id)
+    users = {}
+    for user in usersWhoAdded:
+        thisUser = User.objects.get(id=user.id)
+        users[thisUser.id] = {'firstName': thisUser.firstName, 'lastName': thisUser.lastName, 'count': user.number}
+    print(users)
+    return HttpResponse(json.dumps(users), content_type='application/json', status=200)
