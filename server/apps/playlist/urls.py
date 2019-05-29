@@ -8,5 +8,8 @@ urlpatterns = [
     path('createsong/', views.createsong),
     path('addtoplaylist/', views.addtoplaylist),
     path('getusersongs/<id>/', views.getusersongs),
-    # path('getsongcount/<id>/', views.getsongcount)
+    path('getOneSong/<id>/', views.getOneSong),
+    path('getsongcount/<id>/', views.getsongcount),
+    path('getOneUser/<id>/', views.getOneUser),
+    path('login/', views.login),
 ]

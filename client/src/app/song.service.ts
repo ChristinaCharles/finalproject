@@ -32,7 +32,10 @@ export class SongService {
   getUserSongs(user: number): Observable<Song[]> {
     return this.http.get<Song[]>(`${this.baseUrl}/getusersongs/${user}/`);
   }
-  // getSongCount(user: number): Observable<number[]> {
-  //   return this.http.get<number[]>(`${this.baseUrl}/getsongcount/${user}`);
-  // }
+  getOneSong(song: number): Observable<Song[]> {
+    return this.http.get<Song[]>(`${this.baseUrl}/getOneSong/${song}/`);
+  }
+  getSongCount(song: number): Observable<object[]> {
+    return this.http.get<object[]>(`${this.baseUrl}/getsongcount/${song}`);
+  }
 }
