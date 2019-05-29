@@ -9,5 +9,7 @@ urlpatterns = [
     path('addtoplaylist/', views.addtoplaylist),
     path('getusersongs/<id>/', views.getusersongs),
     path('getOneSong/<id>/', views.getOneSong),
-    path('getsongcount/<id>/', views.getsongcount)
+    path('getsongcount/<id>/', views.getsongcount),
+    path('getOneUser/<id>/', views.getOneUser),
+    path('login/', views.login),
 ]

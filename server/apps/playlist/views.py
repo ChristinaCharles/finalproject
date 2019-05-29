@@ -3,6 +3,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.core import serializers
 from .models import User, Song, Count
 import json
+import bcrypt
 
 
 # Create your views here.
@@ -11,12 +12,22 @@ def index(req):
     serialized_users = serializers.serialize('json', user)
     return HttpResponse(serialized_users, content_type='application/json', status=200)
 
+def login(req):
+    loginUser = json.loads(req.body.decode())
+    print("**********", loginUser['email'])
+    user = User.objects.get(email=loginUser['email'])
+    if bcrypt.checkpw(loginUser['password'].encode(), user.password.encode()):
+        print("password match")
+    else:
+        return HttpResponse(status=400)
+    return HttpResponse(user.id, status=200)
+
 
 def createUser(req):
     new_user = json.loads(req.body.decode())
-
-    user = User.objects.create(firstName=new_user['firstName'], lastName=new_user['lastName'], email=new_user['email'],
-                               password=new_user['password'])
+    pw_hash = bcrypt.hashpw(new_user['password'].encode(), bcrypt.gensalt())
+    user = User.objects.create(firstName=new_user['firstName'], lastName=new_user['lastName'], email=new_user['email'], password=pw_hash)
+    print("THIS IS THE PASSWORD HASH!!!!!!!!!!!", pw_hash)
 
     return HttpResponse(user.id)
 
@@ -82,6 +93,11 @@ def getsongcount(req, id):
     users = {}
     for user in usersWhoAdded:
         thisUser = User.objects.get(id=user.id)
-        users[thisUser.id] = {'firstName': thisUser.firstName, 'lastName': thisUser.lastName, 'count': user.number}
+        users[thisUser.id] = {'id': thisUser.id, 'firstName': thisUser.firstName, 'lastName': thisUser.lastName, 'count': user.number}
     print(users)
     return HttpResponse(json.dumps(users), content_type='application/json', status=200)
+
+def getOneUser(req, id):
+    user = User.objects.filter(id=id)
+    serialized_user = serializers.serialize('json', user)
+    return HttpResponse(serialized_user, content_type='application/json', status=200)

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { LoginRegService } from '../login-reg.service';
 import { User } from '../user';
 import { Router} from "@angular/router";
+import { loginUser } from '../loginUser';
 
 @Component({
   selector: 'app-login-reg',
@@ -12,6 +13,7 @@ import { Router} from "@angular/router";
 
 export class LoginRegComponent implements OnInit {
   newUser: User = new User();
+  loginUser: loginUser = new loginUser();
 
   ngOnInit() {
   }
@@ -22,6 +24,10 @@ export class LoginRegComponent implements OnInit {
     this.router.navigate(['/songs']);
     // event.preventDefault();
     // console.log("This is the form", form)
+  }
+  onLogin() {
+    this.LoginRegService.loginUser(this.loginUser);
+    this.router.navigate(['/songs']);
   }
 
   constructor(private LoginRegService: LoginRegService, private router: Router) { }
