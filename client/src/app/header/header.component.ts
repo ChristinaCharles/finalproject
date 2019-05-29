@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginRegService } from '../login-reg.service';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-  firstName: string;
-  lastName: string;
+  constructor(private userService: LoginRegService) { }
+  // firstName: string;
+  // lastName: string;
   id: string;
+  currentUser: object[];
 
   ngOnInit() {
-    this.firstName = sessionStorage.getItem('user.firstName');
-    this.lastName = sessionStorage.getItem('user.lastName');
+    // this.firstName = sessionStorage.getItem('user.firstName');
+    // this.lastName = sessionStorage.getItem('user.lastName');
     this.id = sessionStorage.getItem('user.id');
+    this.userService.getOneUser(parseInt(this.id)).subscribe(data => {
+      this.currentUser = data;
+      console.log(this.currentUser)
+    });
   }
   onClick() {
     sessionStorage.clear();
