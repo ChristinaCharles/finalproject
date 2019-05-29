@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SongService } from '../song.service';
+import {Component, OnInit} from '@angular/core';
+import {SongService} from '../song.service';
 import {Song} from '../song';
 
 @Component({
@@ -8,28 +8,35 @@ import {Song} from '../song';
   styleUrls: ['./all-songs.component.css']
 })
 export class AllSongsComponent implements OnInit {
- allSongs: object[];
- newSong: Song = new Song();
+  allSongs: object[];
+  newSong: Song = new Song();
+  id: number;
 
-  constructor(private songService: SongService) { }
+
+  constructor(private songService: SongService) {
+  }
 
   ngOnInit() {
-    this.songService.getSongs().subscribe(data => { this.allSongs = data;
-    console.log(data);
+    this.id = parseInt(sessionStorage.getItem('user.id'));
+    this.songService.getSongs().subscribe(data => {
+      this.allSongs = data;
+      console.log(data);
     });
   }
 
   onSubmit() {
     this.songService.createSong(this.newSong);
-    this.songService.getSongs().subscribe(data => { this.allSongs = data;
+    this.songService.getSongs().subscribe(data => {
+      this.allSongs = data;
     });
   }
 
-  onClick(id: number) {
+  onClick(id: number, user: number) {
     console.log(id);
-    this.songService.addToPlaylist(id).subscribe(data => {
+    this.songService.addToPlaylist(id, user).subscribe(data => {
     });
-    this.songService.getSongs().subscribe(data => { this.allSongs = data;
+    this.songService.getSongs().subscribe(data => {
+      this.allSongs = data;
     });
   }
 

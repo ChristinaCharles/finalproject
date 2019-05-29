@@ -10,10 +10,12 @@ export class HeaderComponent implements OnInit {
   constructor() { }
   firstName: string;
   lastName: string;
+  id: string;
 
   ngOnInit() {
     this.firstName = sessionStorage.getItem('user.firstName');
     this.lastName = sessionStorage.getItem('user.lastName');
+    this.id = sessionStorage.getItem('user.id');
   }
   onClick() {
     sessionStorage.clear();

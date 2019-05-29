@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './user';
+import {Song} from "./song";
 
 
 @Injectable({
@@ -25,4 +26,6 @@ export class LoginRegService {
       this.handleLogin(user, data.toString());
     });
   }
+
+
 }
