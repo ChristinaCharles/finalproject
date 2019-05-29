@@ -40,6 +40,7 @@ def getsongs(req):
 
 
 def createsong(req):
+    print("Here")
     new_song = json.loads(req.body.decode())
 
     song = Song.objects.create(title=new_song['title'], artist=new_song['artist'], total_times_added=1)
@@ -48,23 +49,19 @@ def createsong(req):
 
 def addtoplaylist(req):
     vals = json.loads(req.body.decode())
+
     song = Song.objects.get(id=vals['song'])
     user = User.objects.get(id=vals['user'])
+
     user.songs.add(song)
     song.total_times_added += 1
 
     if Count.objects.filter(user=user, song=song).exists():
-        print('yes')
         count = Count.objects.get(user=user, song=song)
         count.number += 1
         count.save()
-
-        print(count.number)
     else:
         count = Count.objects.create(user=user, song=song, number=1)
-        print('no')
-        # print(count.user)
-        print(count.number)
 
     user.save()
     song.save()
@@ -84,6 +81,7 @@ def getusersongs(req, id):
 
     # serialized_songs = serializers.serialize('json', allSongs)
     return HttpResponse(json.dumps(songs), content_type='application/json', status=200)
+
 def getOneSong(req, id):
     song = Song.objects.filter(id=id)
     serialized_song = serializers.serialize('json', song)

@@ -30,7 +30,11 @@ export class AllSongsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.songService.createSong(this.newSong);
+    // console.log(this.newSong.artist);
+    // console.log('this.newSong');
+    this.songService.createSong(this.newSong).subscribe(data => {
+      
+    });
     this.songService.getSongs().subscribe(data => {
       this.allSongs = data;
     });
