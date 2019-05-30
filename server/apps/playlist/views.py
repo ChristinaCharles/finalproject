@@ -29,7 +29,6 @@ def createUser(req):
     pw_hash = bcrypt.hashpw(new_user['password'].encode(), bcrypt.gensalt())
     user = User.objects.create(firstName=new_user['firstName'], lastName=new_user['lastName'], email=new_user['email'], password=pw_hash)
     print("THIS IS THE PASSWORD HASH!!!!!!!!!!!", pw_hash)
-
     return HttpResponse(user.id)
 
 
