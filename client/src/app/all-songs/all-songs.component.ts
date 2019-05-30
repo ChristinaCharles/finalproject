@@ -23,6 +23,7 @@ export class AllSongsComponent implements OnInit {
       this.currentUser = data;
     })
     this.id = parseInt(sessionStorage.getItem('user.id'));
+    console.log("***********", this.id);
     this.songService.getSongs().subscribe(data => {
       this.allSongs = data;
       console.log(data);
@@ -35,19 +36,20 @@ export class AllSongsComponent implements OnInit {
     this.songService.createSong(this.newSong).subscribe(data => {
       
     });
-    this.songService.getSongs().subscribe(data => {
-      this.allSongs = data;
-    });
+    this.ngOnInit();
+    // this.songService.getSongs().subscribe(data => {
+    //   this.allSongs = data;
+    // });
   }
 
   onClick(id: number, user: number) {
-    console.log(id);
+    console.log("THIS IS THE ID; ", id, "THIS IS THE USER", user);
     this.songService.addToPlaylist(id, user).subscribe(data => {
     });
     this.ngOnInit();
-    this.songService.getSongs().subscribe(data => {
-      this.allSongs = data;
-    });
+    // this.songService.getSongs().subscribe(data => {
+    //   this.allSongs = data;
+    // });
   }
 
 }

@@ -2,7 +2,7 @@
   <app-header></app-header>
   <div class="row">
     <div class="col">
-      <h3>{{ firstName }} {{ lastName }}'s Playlist</h3>
+      <h3 *ngFor="let user of currentUser">{{ user.fields.firstName }} {{ user.fields.lastName }}'s Playlist</h3>
       <table class="table table-striped">
         <thead class="thead-dark">
         <tr>

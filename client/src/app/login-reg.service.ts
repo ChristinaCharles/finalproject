@@ -21,6 +21,9 @@ export class LoginRegService {
     sessionStorage.setItem('user.lastName', user.lastName);
     sessionStorage.setItem('user.id', id);
   }
+  sessionLogin(id: string) {
+    sessionStorage.setItem('user.id', id);
+  }
 
   createUser(user: User): void {
     console.log(user.firstName);
@@ -29,8 +32,9 @@ export class LoginRegService {
     });
   }
   loginUser(user: loginUser): void{
-    this.http.post<loginUser>(`${this.baseUrl}/login/`, user).subscribe(data => { console.log("**********", data);
-    })
+    this.http.post<loginUser>(`${this.baseUrl}/login/`, user).subscribe(data => {
+      sessionStorage.setItem('user.id', data.toString());
+    });
   }
   getOneUser(user: number): Observable<object[]> {
     return this.http.get<object[]>(`${this.baseUrl}/getOneUser/${user}`)

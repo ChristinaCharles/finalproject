@@ -26,7 +26,7 @@ export class SongService {
 
   addToPlaylist(song: number, user: number) {
     console.log('hiiii');
-    return this.http.post<Song>(`${this.baseUrl}/addtoplaylist/`, {song, user});
+    return this.http.post(`${this.baseUrl}/addtoplaylist/`, {song, user});
   }
 
   getUserSongs(user: number): Observable<Song[]> {
