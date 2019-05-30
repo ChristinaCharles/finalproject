@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SongService} from '../song.service';
-import {Song} from '../song';
 import { ActivatedRoute } from '@angular/router';
 import { LoginRegService } from '../login-reg.service';
 
@@ -10,8 +9,8 @@ import { LoginRegService } from '../login-reg.service';
   styleUrls: ['./playlist.component.css']
 })
 export class PlaylistComponent implements OnInit {
-  firstName: string;
-  lastName: string;
+  // firstName: string;
+  // lastName: string;
   userSongs = [];
   userId: number;
   currentUser: object[];
@@ -23,15 +22,12 @@ export class PlaylistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.firstName = sessionStorage.getItem('user.firstName');
-    this.lastName = sessionStorage.getItem('user.lastName');
+    // this.firstName = sessionStorage.getItem('user.firstName');
+    // this.lastName = sessionStorage.getItem('user.lastName');
     this.songService.getUserSongs(this.userId).subscribe(data => {
       Object.values(data).forEach(song => this.userSongs.push(song));
     });
-    // this.userService.getOneUser(this.userId).subscribe(data => this.currentUser = data);
-    // console.log(this.currentUser)
-    // this.songService.getSongCount(parseInt(this.id)).subscribe( data => {
-    //   this.songCount = data;
-    // });
+    this.userService.getOneUser(this.userId).subscribe(data => this.currentUser = data);
+    console.log(this.currentUser);
   }
 }

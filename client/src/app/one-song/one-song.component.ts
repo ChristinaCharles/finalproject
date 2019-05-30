@@ -14,7 +14,8 @@ export class OneSongComponent implements OnInit {
   usersWhoAdded = [];
 
   constructor(private songService: SongService, private route: ActivatedRoute) { 
-    this.route.params.subscribe( params => this.songId = params.id );
+    this.route.params.subscribe( params => {
+      this.songId = params.id });
   }
 
   ngOnInit() {

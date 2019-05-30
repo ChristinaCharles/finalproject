@@ -14,14 +14,14 @@ def index(req):
 
 def login(req):
     loginUser = json.loads(req.body.decode())
-    user = User.objects.filter(email=loginUser['email'])
-    print("**********", loginUser['password'], "Database password: ", user.password)
-    if bcrypt.checkpw(loginUser['password'].encode(), user.password.encode()):
-        print("password match")
-    else:
-        return HttpResponse(status=400)
-    serialized_user = serializers.serialize('json', user)
-    return HttpResponse(serialized_user, content_type='application/json', status=200)
+    user = User.objects.get(email=loginUser['email'])
+    print("*********************************THIS IS THE USER*********************************", user.id)
+    # if bcrypt.checkpw(loginUser['password'].encode(), user.password.encode()):
+    #     print("***************************password match********************************************")
+    # else:
+    #     return HttpResponse(status=400)
+    # serialized_user = serializers.serialize('json', user)
+    return HttpResponse(user.id)
 
 
 def createUser(req):
@@ -34,7 +34,7 @@ def createUser(req):
 
 
 def getsongs(req):
-    songs = Song.objects.all()
+    songs = Song.objects.all().order_by('-total_times_added')
     serialized_users = serializers.serialize('json', songs)
     return HttpResponse(serialized_users, content_type='application/json', status=200)
 
@@ -52,7 +52,6 @@ def addtoplaylist(req):
 
     song = Song.objects.get(id=vals['song'])
     user = User.objects.get(id=vals['user'])
-
     user.songs.add(song)
     song.total_times_added += 1
 
@@ -88,10 +87,13 @@ def getOneSong(req, id):
     return HttpResponse(serialized_song, content_type='application/json', status=200)
 
 def getsongcount(req, id):
+    # print("************************", id, song)
     usersWhoAdded = Count.objects.filter(song=id)
+    # print("This is the usersWhoAdded: ", usersWhoAdded)
     users = {}
     for user in usersWhoAdded:
-        thisUser = User.objects.get(id=user.id)
+        thisUser = User.objects.get(id=user.user.id)
+        print("**********THIS IS THE USER**********", thisUser)
         users[thisUser.id] = {'id': thisUser.id, 'firstName': thisUser.firstName, 'lastName': thisUser.lastName, 'count': user.number}
     print(users)
     return HttpResponse(json.dumps(users), content_type='application/json', status=200)

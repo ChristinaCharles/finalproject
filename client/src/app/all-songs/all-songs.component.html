@@ -16,7 +16,7 @@
           <td>{{ song.fields.artist }}</td>
           <td><a [routerLink]="['/songs/', song.pk]">{{ song.fields.title }}</a></td>
           <td>{{ song.fields.total_times_added }}</td>
-          <td><button (click)="onClick(song.pk, id)" class="btn btn-primary">Add</button></td>
+          <td><button (click)="onClick(song.pk, id)" class="btn btn-primary shadow">Add</button></td>
         </tr>
         </tbody>
       </table>
