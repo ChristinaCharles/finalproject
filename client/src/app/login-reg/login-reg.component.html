@@ -74,7 +74,8 @@
                 maxlength="25"
                 pattern="^[a-zA-z]+[a-zA-Z0-9._]+@[a-zA-z]+\.[a-z.]{2,5}$"
                 [(ngModel)]="loginUser.email"
-                #email="ngModel">
+                #loginEmail="ngModel">
+                <p *ngIf="loginEmail.invalid && (loginEmail.dirty || loginEmail.touched)" class="text-danger">Please enter a valid password!</p>
               <label class="font-weight-bold" for="login_password">Password:</label>
               <input type="password" name="password" class="form-control shadow"
               required
@@ -82,9 +83,12 @@
                 maxlength="25"
                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$"
                 [(ngModel)]="loginUser.password"
-                #password="ngModel"
-                ><br>
-              <button type="submit" class="btn btn-success shadow">Login!</button>
+                #loginPassword="ngModel"
+                >
+                <p *ngIf="loginPassword.invalid && (loginPassword.dirty || loginPassword.touched)" class="text-danger">Please enter a valid password!</p>
+                <br>
+                <button *ngIf="!loginForm.valid" disabled type="submit" class="btn btn-success shadow">Login</button>
+                <button *ngIf="loginForm.valid" type="submit" class="btn btn-success shadow">Login!</button>
           </form>
       </div>
   </div>
